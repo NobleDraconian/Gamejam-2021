@@ -74,6 +74,16 @@ end
 function AvatarController:Start()
 	self:DebugLog("[Avatar Controller] Started!")
 
+	------------------------------
+	-- Running avatar abilities --
+	------------------------------
+	for _,AbilityModule in pairs(script.Abilities:GetChildren()) do
+		local Ability = require(AbilityModule)
+
+		setmetatable(Ability,{__index = self})
+		Ability:Init()
+	end
+
 	--------------------------------
 	-- Ragdolling player on death --
 	--------------------------------
