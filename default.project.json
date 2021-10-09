@@ -126,6 +126,11 @@
 		"ReplicatedStorage" : {
 			"$className" : "ReplicatedStorage",
 
+			"Assets" : {
+				"$className" : "Folder",
+
+				"UIs" : {"$path" : "Assets/UIs"}
+			},
 			"Network" : {
 				"$className" : "Folder"
 			},
@@ -133,9 +138,20 @@
 			"DragonEngine_Configs" : {"$path" : "src/Shared/DragonEngine_Configs"},
 			"Modules" : {
 				"$path" : "src/Shared/Modules"
-			}
+			},
+			"LevelConfigs" : {"$path" : "src/Shared/LevelConfigs"}
 		},
 
+		"ServerStorage" : {
+			"$className" : "ServerStorage",
+
+			"Assets" : {
+				"$className" : "Folder",
+
+				"Maps" : {"$path" : "Assets/Maps"}
+			}
+		},
+		
 		"Workspace" : {
 			"$className" : "Workspace",
 			"$properties" :  {
