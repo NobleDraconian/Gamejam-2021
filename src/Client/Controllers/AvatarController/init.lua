@@ -10,6 +10,12 @@ local AvatarController = {}
 ---------------------
 local Players = game:GetService("Players")
 
+------------------
+-- Dependencies --
+------------------
+local DeathUI = require(script.DeathUI)
+setmetatable(DeathUI,{__index = AvatarController})
+
 -------------
 -- Defines --
 -------------
@@ -21,6 +27,7 @@ local Player = Players.LocalPlayer
 local function HandleRagdollDeath(Character)
 	Character:WaitForChild("Humanoid").Died:connect(function()
 		AvatarController:SetRagdolled(true)
+		DeathUI:Show()
 	end)
 end
 
@@ -73,6 +80,8 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function AvatarController:Start()
 	self:DebugLog("[Avatar Controller] Started!")
+
+	DeathUI:Init()
 
 	------------------------------
 	-- Running avatar abilities --

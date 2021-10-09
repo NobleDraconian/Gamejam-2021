@@ -15,6 +15,7 @@ local Players = game:GetService("Players")
 -- Dependencies --
 ------------------
 local LevelService;
+local LightingController;
 local MenuUI = require(script.MenuUI)
 setmetatable(MenuUI,{__index = LevelController})
 local LoadingUI = require(script.LoadingUI)
@@ -41,6 +42,14 @@ local function StopMusic()
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : RequestPlayerRespawn
+-- @Description : Respawns the player
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function LevelController:RequestPlayerRespawn()
+	LevelService:RequestRespawn()
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- @Name : Client.RunLevel
 -- @Description : Loads & Runs the specified level
 -- @Params : string "LevelID" - The ID of the level to run
@@ -50,8 +59,9 @@ function LevelController:RunLevel(LevelID)
 	local Map;
 	local LevelEnd_TouchedConnection;
 
-	PlayMusic(LevelConfig.MusicID)
 	LoadingUI:Show()
+	PlayMusic(LevelConfig.MusicID)
+	LightingController:LoadLightingState(LevelConfig.LightingState)
 	LevelService:RunLevel(LevelID)
 	LoadingUI:Hide()
 
@@ -61,13 +71,22 @@ function LevelController:RunLevel(LevelID)
 		if TP:IsDescendantOf(Player.Character) then
 			LevelEnd_TouchedConnection:Disconnect()
 
-			LoadingUI:Show()
-			MenuUI:Show()
-			StopMusic()
-			LevelService:StopLevel()
-			LoadingUI:Hide()
+			self:StopLevel()
 		end
 	end)
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : StopLevel
+-- @Description : Stops the currently running level
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function LevelController:StopLevel()
+	LoadingUI:Show()
+	MenuUI:Show()
+	LightingController:LoadLightingState("Default")
+	StopMusic()
+	LevelService:StopLevel()
+	LoadingUI:Hide()
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -101,6 +120,7 @@ end
 function LevelController:Start()
 	self:DebugLog("[Level Controller] Started!")
 
+	LightingController = self:GetController("LightingController")
 end
 
 return LevelController
