@@ -24,6 +24,14 @@ local function HandleRagdollDeath(Character)
 	end)
 end
 
+local function DisableProblematicHumanoidStates(Character)
+	local Humanoid = Character:WaitForChild("Humanoid")
+
+	Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+	Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+	Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+end
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- API Methods
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -73,6 +81,14 @@ function AvatarController:Start()
 		HandleRagdollDeath(Player.Character)
 	end
 	Player.CharacterAdded:connect(HandleRagdollDeath)
+
+	-------------------------------------------
+	-- Disabling problematic humanoid states --
+	-------------------------------------------
+	if Player.Character ~= nil then
+		coroutine.wrap(DisableProblematicHumanoidStates)(Player.Character)
+	end
+	Player.CharacterAdded:connect(DisableProblematicHumanoidStates)
 end
 
 return AvatarController
