@@ -29,6 +29,20 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : GetAvatarHealth
+-- @Description : Returns the health of the player's current avatar
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function AvatarController:GetAvatarHealth()
+	if Player.Character == nil then
+		return 0
+	elseif Player.Character.Humanoid == nil then
+		return 0
+	else
+		return Player.Character.Humanoid.Health
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- @Name : SetRagdolled
 -- @Description : Sets whether or not the player's current avatar is ragdolled
 -- @Params : bool "ShouldRagdoll" - Whether or not the player's avatar should ragdoll
