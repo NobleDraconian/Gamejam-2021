@@ -51,6 +51,12 @@ local function HandleHumanoidHealth(Character)
 			AvatarDied:Fire()
 		end
 	end)
+
+	Humanoid.Touched:connect(function(TP)
+		if TP.Name == "_Damage" then
+			AvatarController:SetAvatarHealth(0)
+		end
+	end)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
