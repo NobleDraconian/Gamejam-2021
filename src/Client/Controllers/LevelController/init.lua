@@ -61,7 +61,7 @@ function LevelController:RunLevel(LevelID)
 
 	LoadingUI:Show()
 	PlayMusic(LevelConfig.MusicID)
-	LightingController:LoadLightingState(LevelConfig.LightingState)
+	LightingController:LoadLightingState(LevelConfig.LevelName)
 	LevelService:RunLevel(LevelID)
 	LoadingUI:Hide()
 
@@ -121,6 +121,10 @@ function LevelController:Start()
 	self:DebugLog("[Level Controller] Started!")
 
 	LightingController = self:GetController("LightingController")
+
+	for _,LevelConfig in pairs(LevelConfigs) do
+		LightingController:RegisterLightingState(LevelConfig.LevelName,LevelConfig.LightingState)
+	end
 end
 
 return LevelController
