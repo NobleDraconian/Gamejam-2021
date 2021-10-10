@@ -41,6 +41,15 @@ end
 
 local function HandleCharacterAdded(Character)
 	local Humanoid = Character:WaitForChild("Humanoid")
+	local RootPart = Character:WaitForChild("HumanoidRootPart")
+	local SingleJumpSound = Instance.new('Sound')
+	SingleJumpSound.SoundId = "rbxassetid://6048433907"
+	SingleJumpSound.Name = "SingleJump"
+	SingleJumpSound.Parent = RootPart
+	local DoubleJumpSound = Instance.new('Sound')
+	DoubleJumpSound.SoundId = "rbxassetid://6048434976"
+	DoubleJumpSound.Name = "DoubleJump"
+	DoubleJumpSound.Parent = RootPart
 
 	DoubleJump_Anim = Humanoid:LoadAnimation(DoubleJump_Anim_Data)
 
@@ -71,10 +80,12 @@ local function HandleJumpButton(_,InputState)
 			if not HasSingleJumped then
 				HasSingleJumped = true
 				DoubleJump:DoJump()
+				Player.Character.HumanoidRootPart.SingleJump:Play()
 			elseif not HasDoubleJumped then
 				HasDoubleJumped = true
 				DoubleJump:DoJump()
 				DoubleJump_Anim:Play()
+				Player.Character.HumanoidRootPart.DoubleJump:Play()
 			end
 		end
 	end
