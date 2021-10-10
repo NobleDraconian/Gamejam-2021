@@ -12,6 +12,8 @@ local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
+local TweenService = game:GetService("TweenService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 ------------------
 -- Dependencies --
@@ -33,6 +35,30 @@ local Abilities = {}
 local function HandleRagdollDeath()
 	AvatarController.AvatarDied:connect(function()
 		AvatarController:SetRagdolled(true)
+
+		wait(1)
+		for _,Object in pairs(Player.Character:GetDescendants()) do
+			if Object:IsA("BasePart") then
+				local FadeTween = TweenService:Create(
+					Object,
+					TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
+					{
+						Transparency = 1
+					}
+				)
+				local DecompileParticle = ReplicatedStorage.Assets.Particles.DecompileParticle:Clone()
+				DecompileParticle.Enabled = true
+				DecompileParticle.Parent = Object
+
+				FadeTween:Play()
+			end
+		end
+		wait(1)
+		for _,Object in pairs(Player.Character:GetDescendants()) do
+			if Object:IsA("ParticleEmitter") then
+				Object.Enabled = false
+			end
+		end
 		DeathUI:Show()
 	end)
 end
