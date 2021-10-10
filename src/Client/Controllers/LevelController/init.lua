@@ -32,6 +32,7 @@ Music.Parent = script
 local LevelConfigs = {}
 local MenuCamRunning = false
 local CurrentCamTween;
+local MenuMap;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Helper functions
@@ -48,7 +49,7 @@ end
 local function RunMenuCam()
 	MenuCamRunning = true
 
-	local MenuMap = ReplicatedStorage.Assets.MenuMap:Clone()
+	MenuMap = ReplicatedStorage.Assets.MenuMap:Clone()
 	MenuMap.Parent = Workspace
 	local SequenceNumber = 1
 
@@ -70,7 +71,6 @@ local function RunMenuCam()
 			wait(7)
 
 			if not MenuCamRunning then
-				MenuMap:Destroy()
 				break
 			else
 				SequenceNumber = SequenceNumber + 1
@@ -87,6 +87,7 @@ local function StopMenuCam()
 	MenuCamRunning = false
 	CurrentCamTween:Cancel()
 	Workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+	MenuMap:Destroy()
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
