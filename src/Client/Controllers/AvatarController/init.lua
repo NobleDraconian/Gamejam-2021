@@ -97,7 +97,9 @@ local function HandleHumanoidHealth(Character)
 
 	Humanoid.Touched:connect(function(TP)
 		if TP.Name == "_Damage" then
-			AvatarController:SetAvatarHealth(0)
+			if AvatarController:GetAvatarHealth() > 0 then
+				AvatarController:SetAvatarHealth(0)
+			end
 		end
 	end)
 end
