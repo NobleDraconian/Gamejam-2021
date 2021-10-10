@@ -10,6 +10,8 @@ local LevelController = {}
 ---------------------
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local TweenService = game:GetService("TweenService")
 
 ------------------
 -- Dependencies --
@@ -28,6 +30,8 @@ local Music = Instance.new('Sound')
 Music.Looped = true
 Music.Parent = script
 local LevelConfigs = {}
+local MenuCamRunning = false
+local CurrentCamTween;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Helper functions
@@ -39,6 +43,50 @@ end
 
 local function StopMusic()
 	Music:Stop()
+end
+
+local function RunMenuCam()
+	MenuCamRunning = true
+
+	local MenuMap = ReplicatedStorage.Assets.MenuMap:Clone()
+	MenuMap.Parent = Workspace
+	local SequenceNumber = 1
+
+	coroutine.wrap(function()
+		while true do
+			local Sequence = MenuMap.CamSequences[tostring(SequenceNumber)]
+			CurrentCamTween = TweenService:Create(
+				Workspace.CurrentCamera,
+				TweenInfo.new(7,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),
+				{
+					CFrame = Sequence.End.CFrame
+				}
+			)
+
+			Workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+			Workspace.CurrentCamera.CFrame = Sequence.Start.CFrame
+
+			CurrentCamTween:Play()
+			wait(7)
+
+			if not MenuCamRunning then
+				MenuMap:Destroy()
+				break
+			else
+				SequenceNumber = SequenceNumber + 1
+
+				if MenuMap.CamSequences:FindFirstChild(tostring(SequenceNumber)) == nil then
+					SequenceNumber = 1
+				end
+			end
+		end
+	end)()
+end
+
+local function StopMenuCam()
+	MenuCamRunning = false
+	CurrentCamTween:Cancel()
+	Workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,6 +108,7 @@ function LevelController:RunLevel(LevelID)
 	local LevelEnd_TouchedConnection;
 
 	LoadingUI:Show()
+	StopMenuCam()
 	PlayMusic(LevelConfig.MusicID)
 	LightingController:LoadLightingState(LevelConfig.LevelName)
 	LevelService:RunLevel(LevelID)
@@ -83,9 +132,11 @@ end
 function LevelController:StopLevel()
 	LoadingUI:Show()
 	MenuUI:Show()
-	LightingController:LoadLightingState("Default")
+	LightingController:LoadLightingState("Tutorial Level")
 	StopMusic()
 	LevelService:StopLevel()
+	PlayMusic("1842066455")
+	RunMenuCam()
 	LoadingUI:Hide()
 end
 
@@ -108,8 +159,6 @@ function LevelController:Init()
 		LevelConfigs[LevelConfigModule.Name] = require(LevelConfigModule)
 	end
 
-	MenuUI:Init()
-
 	self:DebugLog("[Level Controller] Initialized!")
 end
 
@@ -125,6 +174,11 @@ function LevelController:Start()
 	for _,LevelConfig in pairs(LevelConfigs) do
 		LightingController:RegisterLightingState(LevelConfig.LevelName,LevelConfig.LightingState)
 	end
+	LightingController:LoadLightingState("Tutorial Level")
+
+	MenuUI:Init()
+	PlayMusic("1842066455")
+	RunMenuCam()
 end
 
 return LevelController

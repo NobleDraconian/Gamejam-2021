@@ -131,7 +131,8 @@
 
 				"UIs" : {"$path" : "Assets/UIs"},
 				"Lighting" : {"$path" : "Assets/Lighting"},
-				"Particles" : {"$path" : "Assets/Particles"}
+				"Particles" : {"$path" : "Assets/Particles"},
+				"MenuMap" : {"$path" : "Assets/MenuMap.rbxmx"}
 			},
 			"Network" : {
 				"$className" : "Folder"
