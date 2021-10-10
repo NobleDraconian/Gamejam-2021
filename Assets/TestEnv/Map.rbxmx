@@ -2,24 +2,10 @@
 	<Meta name="ExplicitAutoJoints">true</Meta>
 	<External>null</External>
 	<External>nil</External>
-	<Item class="Model" referent="628">
+	<Item class="Model" referent="3833">
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
 			<token name="LevelOfDetail">0</token>
-			<CoordinateFrame name="ModelInPrimary">
-				<X>0</X>
-				<Y>0</Y>
-				<Z>0</Z>
-				<R00>1</R00>
-				<R01>0</R01>
-				<R02>0</R02>
-				<R10>0</R10>
-				<R11>1</R11>
-				<R12>0</R12>
-				<R20>0</R20>
-				<R21>0</R21>
-				<R22>1</R22>
-			</CoordinateFrame>
 			<CoordinateFrame name="ModelMeshCFrame">
 				<X>0</X>
 				<Y>0</Y>
@@ -41,11 +27,28 @@
 				<Z>0</Z>
 			</Vector3>
 			<string name="Name">Map</string>
+			<bool name="NeedsPivotMigration">false</bool>
 			<Ref name="PrimaryPart">null</Ref>
 			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
+			<OptionalCoordinateFrame name="WorldPivotData">
+				<CFrame>
+					<X>0</X>
+					<Y>11.9750004</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CFrame>
+			</OptionalCoordinateFrame>
 		</Properties>
-		<Item class="Part" referent="629">
+		<Item class="Part" referent="3834">
 			<Properties>
 				<bool name="Anchored">true</bool>
 				<BinaryString name="AttributesSerialize"></BinaryString>
@@ -59,7 +62,7 @@
 				<token name="BottomSurfaceInput">0</token>
 				<CoordinateFrame name="CFrame">
 					<X>0</X>
-					<Y>-0.0249996185</Y>
+					<Y>-8.02499962</Y>
 					<Z>0</Z>
 					<R00>1</R00>
 					<R01>0</R01>
@@ -72,6 +75,8 @@
 					<R22>1</R22>
 				</CoordinateFrame>
 				<bool name="CanCollide">true</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
 				<bool name="CastShadow">true</bool>
 				<int name="CollisionGroupId">0</int>
 				<Color3uint8 name="Color3uint8">4283914327</Color3uint8>
@@ -89,7 +94,22 @@
 				<bool name="Locked">true</bool>
 				<bool name="Massless">false</bool>
 				<token name="Material">1088</token>
+				<Ref name="MaterialVariant">null</Ref>
 				<string name="Name">Baseplate</string>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
 				<float name="Reflectance">0</float>
 				<float name="RightParamA">-0.5</float>
 				<float name="RightParamB">0.5</float>
@@ -117,11 +137,11 @@
 				<token name="shape">1</token>
 				<Vector3 name="size">
 					<X>2048</X>
-					<Y>0.0500000007</Y>
+					<Y>16.0499992</Y>
 					<Z>2048</Z>
 				</Vector3>
 			</Properties>
-			<Item class="Texture" referent="630">
+			<Item class="Texture" referent="3835">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -139,9 +159,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0.899999976</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="631">
+			<Item class="Texture" referent="3836">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -159,10 +180,11 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0.899999976</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="Part" referent="632">
+		<Item class="Part" referent="3837">
 			<Properties>
 				<bool name="Anchored">true</bool>
 				<BinaryString name="AttributesSerialize"></BinaryString>
@@ -189,6 +211,8 @@
 					<R22>1</R22>
 				</CoordinateFrame>
 				<bool name="CanCollide">false</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
 				<bool name="CastShadow">true</bool>
 				<int name="CollisionGroupId">0</int>
 				<Color3uint8 name="Color3uint8">4280690214</Color3uint8>
@@ -206,7 +230,22 @@
 				<bool name="Locked">false</bool>
 				<bool name="Massless">false</bool>
 				<token name="Material">272</token>
+				<Ref name="MaterialVariant">null</Ref>
 				<string name="Name">Spawn</string>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
 				<float name="Reflectance">0</float>
 				<float name="RightParamA">-0.5</float>
 				<float name="RightParamB">0.5</float>
@@ -238,9 +277,9 @@
 					<Z>16</Z>
 				</Vector3>
 			</Properties>
-			<Item class="SelectionBox" referent="633">
+			<Item class="SelectionBox" referent="3838">
 				<Properties>
-					<Ref name="Adornee">632</Ref>
+					<Ref name="Adornee">3837</Ref>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
 						<R>0.333333343</R>
@@ -262,7 +301,7 @@
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="Part" referent="634">
+		<Item class="Part" referent="3839">
 			<Properties>
 				<bool name="Anchored">true</bool>
 				<BinaryString name="AttributesSerialize"></BinaryString>
@@ -289,6 +328,8 @@
 					<R22>1</R22>
 				</CoordinateFrame>
 				<bool name="CanCollide">true</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
 				<bool name="CastShadow">true</bool>
 				<int name="CollisionGroupId">0</int>
 				<Color3uint8 name="Color3uint8">4280690214</Color3uint8>
@@ -306,7 +347,22 @@
 				<bool name="Locked">false</bool>
 				<bool name="Massless">false</bool>
 				<token name="Material">272</token>
+				<Ref name="MaterialVariant">null</Ref>
 				<string name="Name">Part</string>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
 				<float name="Reflectance">0</float>
 				<float name="RightParamA">-0.5</float>
 				<float name="RightParamB">0.5</float>
@@ -338,7 +394,7 @@
 					<Z>16</Z>
 				</Vector3>
 			</Properties>
-			<Item class="Texture" referent="635">
+			<Item class="Texture" referent="3840">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -356,9 +412,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="636">
+			<Item class="Texture" referent="3841">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -376,9 +433,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="637">
+			<Item class="Texture" referent="3842">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -396,9 +454,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="638">
+			<Item class="Texture" referent="3843">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -416,9 +475,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="639">
+			<Item class="Texture" referent="3844">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -436,9 +496,10 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Texture" referent="640">
+			<Item class="Texture" referent="3845">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<Color3 name="Color3">
@@ -456,6 +517,7 @@
 					<BinaryString name="Tags"></BinaryString>
 					<Content name="Texture"><url>rbxassetid://2933713503</url></Content>
 					<float name="Transparency">0</float>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>
