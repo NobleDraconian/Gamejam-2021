@@ -2,7 +2,7 @@
 	<Meta name="ExplicitAutoJoints">true</Meta>
 	<External>null</External>
 	<External>nil</External>
-	<Item class="ParticleEmitter" referent="RBX843FEED06800478FBBAA5C30D58A8294">
+	<Item class="ParticleEmitter" referent="14">
 		<Properties>
 			<Vector3 name="Acceleration">
 				<X>0</X>
@@ -18,7 +18,7 @@
 			<NumberRange name="Lifetime">4 5 </NumberRange>
 			<float name="LightEmission">1</float>
 			<float name="LightInfluence">0</float>
-			<bool name="LockedToPart">true</bool>
+			<bool name="LockedToPart">false</bool>
 			<string name="Name">DecompileParticle</string>
 			<token name="Orientation">0</token>
 			<float name="Rate">10</float>
