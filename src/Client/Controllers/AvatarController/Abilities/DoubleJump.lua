@@ -84,7 +84,7 @@ local function HandleJumpButton(_,InputState)
 			elseif not HasDoubleJumped then
 				HasDoubleJumped = true
 				DoubleJump:DoJump()
-				DoubleJump_Anim:Play()
+				DoubleJump_Anim:Play(0.1,1,0.8)
 				Player.Character.HumanoidRootPart.DoubleJump:Play()
 			end
 		end
