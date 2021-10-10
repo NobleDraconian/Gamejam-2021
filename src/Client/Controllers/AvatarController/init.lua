@@ -187,6 +187,8 @@ function AvatarController:Start()
 
 		if Success then
 			break
+		else
+			RunService.Stepped:wait()
 		end
 	end
 
