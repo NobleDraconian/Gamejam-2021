@@ -116,11 +116,12 @@ function Dive:StopDive(ShouldFling,CastResult)
 	if IsDiving then
 		Stepped_Connection:Disconnect()
 
-		if ShouldFling then
-			local Character = Player.Character
-			local PrimaryPart = Character.PrimaryPart
+		local Character = Player.Character
+		local PrimaryPart = Character.PrimaryPart
+		PrimaryPart.Velocity = Vector3.new(0,0,0)
 
-			PrimaryPart.Velocity = Vector3.new(0,0,0)
+		if ShouldFling then
+
 			PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
 		end
 		IsDiving = false
