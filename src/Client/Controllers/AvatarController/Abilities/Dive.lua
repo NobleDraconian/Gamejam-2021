@@ -107,7 +107,7 @@ function Dive:DoDive()
 
 			if AvatarController:GetAvatarHealth() == 0 or Character.Parent == nil then
 				self:StopDive(false)
-			elseif Humanoid:GetState() ~= Enum.HumanoidStateType.Freefall and Humanoid:GetState() ~= Enum.HumanoidStateType.Jumping then
+			elseif Humanoid.FloorMaterial ~= Enum.Material.Air and Humanoid:GetState() ~= Enum.HumanoidStateType.Jumping then
 				self:StopDive(false)
 			elseif ForwardRaycastResult ~= nil then
 				if ForwardRaycastResult.Instance.CanCollide then
@@ -145,6 +145,18 @@ function Dive:StopDive(ShouldFling,CastResult)
 			local ImpactParticle = ReplicatedStorage.Assets.Particles.WallBounceParticle:Clone()
 			ImpactParticle.Parent = ParticlePart
 			ImpactParticle:Emit(100)
+			local RayCFrame = CFrame.lookAt(CastResult.Position, CastResult.Position - CastResult.Normal)
+			local Direction = -(RayCFrame - RayCFrame.lookVector * 1).lookVector*150
+			local Jump_BodyVelocity = Instance.new('BodyVelocity')
+			Jump_BodyVelocity.P = math.huge
+			Jump_BodyVelocity.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+			Jump_BodyVelocity.Velocity = Direction + Vector3.new(0,100,0)
+			Jump_BodyVelocity.Parent = Character.PrimaryPart
+			
+			coroutine.wrap(function()
+				wait(0.05)
+				Jump_BodyVelocity:Destroy()
+			end)()
 			coroutine.wrap(function()
 				wait(1)
 				ParticlePart:Destroy()
