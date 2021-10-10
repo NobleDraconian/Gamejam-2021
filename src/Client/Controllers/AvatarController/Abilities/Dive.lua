@@ -146,11 +146,11 @@ function Dive:StopDive(ShouldFling,CastResult)
 			ImpactParticle.Parent = ParticlePart
 			ImpactParticle:Emit(100)
 			local RayCFrame = CFrame.lookAt(CastResult.Position, CastResult.Position - CastResult.Normal)
-			local Direction = -(RayCFrame - RayCFrame.lookVector * 1).lookVector*150
-			local Jump_BodyVelocity = Instance.new('BodyVelocity')
-			Jump_BodyVelocity.P = math.huge
-			Jump_BodyVelocity.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-			Jump_BodyVelocity.Velocity = Direction + Vector3.new(0,100,0)
+            local Direction = -(RayCFrame - RayCFrame.lookVector * 1).lookVector*175
+            local Jump_BodyVelocity = Instance.new('BodyVelocity')
+            Jump_BodyVelocity.P = math.huge
+            Jump_BodyVelocity.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+            Jump_BodyVelocity.Velocity = Direction + Vector3.new(0,60,0)
 			Jump_BodyVelocity.Parent = Character.PrimaryPart
 			
 			coroutine.wrap(function()
