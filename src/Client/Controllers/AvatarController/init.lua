@@ -27,16 +27,26 @@ setmetatable(DeathUI,{__index = AvatarController})
 local Falling_Connection;
 local AvatarDied;
 local Player = Players.LocalPlayer
+local Rand = Random.new()
+local DeathSounds = {"1841330100","1835354900","1835330367"}
 local Abilities = {}
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Helper functions
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local function HandleRagdollDeath()
-	AvatarController.AvatarDied:connect(function()
+	local Died_Connection;
+
+	Died_Connection = AvatarController.AvatarDied:connect(function()
+		Died_Connection:Disconnect()
+		warn("DED")
 		AvatarController:SetRagdolled(true)
 
 		wait(1)
+		local DeathSound = Instance.new('Sound')
+		DeathSound.Parent = Player.Character.HumanoidRootPart
+		DeathSound.SoundId = "rbxassetid://" .. DeathSounds[Rand:NextInteger(1,#DeathSounds)]
+		DeathSound:Play()
 		for _,Object in pairs(Player.Character:GetDescendants()) do
 			if Object:IsA("BasePart") then
 				local FadeTween = TweenService:Create(
