@@ -163,7 +163,11 @@
 				"StreamingMinRadius" : 64,
 				"StreamingPauseMode" : "Default",
 				"StreamingTargetRadius" : 1024,
-				"TouchesUseCollisionGroups" : true
+				"TouchesUseCollisionGroups" : true,
+				"HumanoidOnlySetCollisionsOnStateChange" : {
+					"Type" : "Enum",
+					"Value" : 2
+				}
 			},
 	
 			"Map" : {"$path" : "Assets/TestEnv/Map.rbxmx"}
