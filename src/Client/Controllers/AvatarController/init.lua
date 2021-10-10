@@ -10,6 +10,8 @@ local AvatarController = {}
 ---------------------
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
 
 ------------------
 -- Dependencies --
@@ -20,6 +22,7 @@ setmetatable(DeathUI,{__index = AvatarController})
 -------------
 -- Defines --
 -------------
+local Falling_Connection;
 local AvatarDied;
 local Player = Players.LocalPlayer
 
@@ -56,6 +59,23 @@ local function HandleHumanoidHealth(Character)
 	Humanoid.Touched:connect(function(TP)
 		if TP.Name == "_Damage" then
 			AvatarController:SetAvatarHealth(0)
+		end
+	end)
+end
+
+local function HandleJumpGravity(Character)
+	local RootPart = Character:WaitForChild("HumanoidRootPart")
+
+	Falling_Connection = RunService.Stepped:connect(function()
+		if RootPart.AssemblyLinearVelocity.Y < 0 then
+			Workspace.Gravity = 120
+		else
+			Workspace.Gravity = 196.2
+		end
+
+		if Character.Parent == nil then
+			Falling_Connection:Disconnect()
+			Workspace.Gravity = 196.2
 		end
 	end)
 end
@@ -163,6 +183,14 @@ function AvatarController:Start()
 		coroutine.wrap(DisableProblematicHumanoidStates)(Player.Character)
 	end
 	Player.CharacterAdded:connect(DisableProblematicHumanoidStates)
+
+	------------------------------
+	-- Handling falling gravity --
+	------------------------------
+	if Player.Character ~= nil then
+		coroutine.wrap(HandleJumpGravity)(Player.Character)
+	end
+	Player.CharacterAdded:connect(HandleJumpGravity)
 
 	--------------------------------
 	-- Initializing avatar health --
