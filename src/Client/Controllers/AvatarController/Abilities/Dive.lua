@@ -21,6 +21,9 @@ local AvatarController;
 -------------
 -- Defines --
 -------------
+local DiveAnimation_Data = Instance.new('Animation')
+DiveAnimation_Data.AnimationId = "rbxassetid://7698290188"
+local DiveAnimation;
 local Stepped_Connection;
 local Player = Players.LocalPlayer
 local IsDiving = false
@@ -64,6 +67,13 @@ local function SetCharacterCollidable(Character,Collidable)
 	end
 end
 
+local function HandleCharacterAdded(Character)
+	local Humanoid = Character:WaitForChild("Humanoid")
+
+	DiveAnimation = Humanoid:LoadAnimation(DiveAnimation_Data)
+	DiveAnimation.Looped = true
+end
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- API Methods
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,6 +93,7 @@ function Dive:DoDive()
 		CastParams.FilterDescendantsInstances = {Player.Character}
 		CastParams.FilterType = Enum.RaycastFilterType.Blacklist
 
+		DiveAnimation:Play()
 		SetCharacterCollidable(Player.Character,true)
 		PrimaryPart:ApplyImpulse(Vector3.new(0,40 * GetCharacterMass(Character),0) + PrimaryPart.CFrame.LookVector * 100 * GetCharacterMass(Character))
 
@@ -120,8 +131,9 @@ function Dive:StopDive(ShouldFling,CastResult)
 		local PrimaryPart = Character.PrimaryPart
 		PrimaryPart.Velocity = Vector3.new(0,0,0)
 
-		if ShouldFling then
+		DiveAnimation:Stop()
 
+		if ShouldFling then
 			PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
 		end
 		IsDiving = false
@@ -136,6 +148,11 @@ function Dive:Init()
 	AvatarController = self:GetController("AvatarController")
 
 	ContextActionService:BindAction("Dive",HandleDiveButton,true,Enum.KeyCode.LeftShift,Enum.KeyCode.ButtonX)
+
+	if Player.Character ~= nil then
+		coroutine.wrap(HandleCharacterAdded)(Player.Character)
+	end
+	Player.CharacterAdded:connect(HandleCharacterAdded)
 end
 
 return Dive
