@@ -1,0 +1,94 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RBXC1C02F86A5D44630BC7EA6C3F5CEF8A5">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Level2</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="Atmosphere" referent="RBX918C0451636D4B9496AEA2B139DB1B79">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<Color3 name="Color">
+					<R>0</R>
+					<G>0</G>
+					<B>0</B>
+				</Color3>
+				<Color3 name="Decay">
+					<R>0.580392182</R>
+					<G>0.137254909</G>
+					<B>0.690196097</B>
+				</Color3>
+				<float name="Density">0.474999994</float>
+				<float name="Glare">1</float>
+				<float name="Haze">2.0999999</float>
+				<string name="Name">Atmosphere</string>
+				<float name="Offset">0</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+		<Item class="Sky" referent="RBX69E279A3168C447B86B21FEA2592D3D2">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<bool name="CelestialBodiesShown">false</bool>
+				<float name="MoonAngularSize">11</float>
+				<Content name="MoonTextureId"><url>rbxasset://sky/moon.jpg</url></Content>
+				<string name="Name">Skybox</string>
+				<Content name="SkyboxBk"><url>rbxassetid://846272685</url></Content>
+				<Content name="SkyboxDn"><url>rbxassetid://846272685</url></Content>
+				<Content name="SkyboxFt"><url>rbxassetid://846272685</url></Content>
+				<Content name="SkyboxLf"><url>rbxassetid://846272685</url></Content>
+				<Content name="SkyboxRt"><url>rbxassetid://846272685</url></Content>
+				<Content name="SkyboxUp"><url>rbxassetid://846272685</url></Content>
+				<int64 name="SourceAssetId">846275041</int64>
+				<int name="StarCount">0</int>
+				<float name="SunAngularSize">21</float>
+				<Content name="SunTextureId"><url>rbxasset://sky/sun.jpg</url></Content>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+		<Item class="BloomEffect" referent="RBXF5F4A376DC374D51861A481712F9FC6A">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<bool name="Enabled">true</bool>
+				<float name="Intensity">4</float>
+				<string name="Name">Bloom</string>
+				<float name="Size">24</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="Threshold">2</float>
+			</Properties>
+		</Item>
+		<Item class="BlurEffect" referent="RBX96819B46D7C648F3A856247560566C66">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<bool name="Enabled">true</bool>
+				<string name="Name">Blur</string>
+				<float name="Size">4</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+		<Item class="ColorCorrectionEffect" referent="RBX772B6E7746744489BE8AE67C03EF9754">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<float name="Brightness">0</float>
+				<float name="Contrast">0</float>
+				<bool name="Enabled">true</bool>
+				<string name="Name">ColorCorrection</string>
+				<float name="Saturation">0.300000012</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<Color3 name="TintColor">
+					<R>1</R>
+					<G>1</G>
+					<B>1</B>
+				</Color3>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>

@@ -1,7 +1,7 @@
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local LightingFolder = ReplicatedStorage.Assets.Lighting.TestLevel1
+local LightingFolder = ReplicatedStorage.Assets.Lighting.Level1
 
 return {
 	LevelOrder = 1,
