@@ -121,7 +121,7 @@ function DoubleJump:Init()
 	-------------------------------------
 	ContextActionService:BindAction("Jump",HandleJumpButton,false,Enum.KeyCode.Space,Enum.KeyCode.ButtonA)
 	if Player:WaitForChild("PlayerGui"):FindFirstChild("TouchGui") ~= nil then
-		Player.PlayerGui.TouchGui.TouchControlFrame.JumpButton.MouseButton1Down:connect(function()
+		Player.PlayerGui.TouchGui.TouchControlFrame:WaitForChild("JumpButton").MouseButton1Down:connect(function()
 			HandleJumpButton(nil,Enum.UserInputState.Begin)
 		end)
 	end

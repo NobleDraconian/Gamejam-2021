@@ -119,7 +119,8 @@
 					"$path" : "src/Client/Scripts",
 
 					"RagdollClient" : {"$path" : "Vendor/Roblox/Ragdoll/RagdollClient.rbxmx"}
-				}
+				},
+				"PlayerModule" : {"$path" : "Vendor/Roblox/PlayerModule"}
 			}
 		},
 
