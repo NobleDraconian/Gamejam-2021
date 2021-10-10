@@ -5,8 +5,8 @@ local LightingFolder = ReplicatedStorage.Assets.Lighting.TestLevel1
 
 return {
 	LevelOrder = 1,
-	LevelName = "Test Level 1",
-	MapName = "TestLevel1",
+	LevelName = "Tutorial Level",
+	MapName = "Level1",
 	MusicID = "1836627134",
 
 	LightingState = {
