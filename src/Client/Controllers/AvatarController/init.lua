@@ -46,6 +46,8 @@ local function HandleRagdollDeath()
 		local DeathSound = Instance.new('Sound')
 		DeathSound.Parent = Player.Character.HumanoidRootPart
 		DeathSound.SoundId = "rbxassetid://" .. DeathSounds[Rand:NextInteger(1,#DeathSounds)]
+		DeathSound.Volume = 0.7
+		DeathSound.RollOffMinDistance = 30
 		DeathSound:Play()
 		for _,Object in pairs(Player.Character:GetDescendants()) do
 			if Object:IsA("BasePart") then
