@@ -12,6 +12,7 @@ local Players = game:GetService("Players")
 local ContextActionService = game:GetService("ContextActionService")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 ------------------
 -- Dependencies --
@@ -134,7 +135,21 @@ function Dive:StopDive(ShouldFling,CastResult)
 		DiveAnimation:Stop()
 
 		if ShouldFling then
-			PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
+			local ParticlePart = Instance.new('Part')
+			ParticlePart.CanCollide = false
+			ParticlePart.CanTouch = false
+			ParticlePart.Anchored = true
+			ParticlePart.Transparency = 1
+			ParticlePart.CFrame = PrimaryPart.CFrame
+			ParticlePart.Parent = Workspace
+			local ImpactParticle = ReplicatedStorage.Assets.Particles.WallBounceParticle:Clone()
+			ImpactParticle.Parent = ParticlePart
+			ImpactParticle:Emit(100)
+			coroutine.wrap(function()
+				wait(1)
+				ParticlePart:Destroy()
+			end)()
+			PrimaryPart:ApplyImpulse(-CastResult.Normal * 100 * GetCharacterMass(Character))
 		end
 		IsDiving = false
 	end
