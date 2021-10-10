@@ -113,16 +113,18 @@ end
 --           Instance <RaycastResult> "CastResult" - The results of the impact raycast
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function Dive:StopDive(ShouldFling,CastResult)
-	Stepped_Connection:Disconnect()
+	if IsDiving then
+		Stepped_Connection:Disconnect()
 
-	if ShouldFling then
-		local Character = Player.Character
-		local PrimaryPart = Character.PrimaryPart
+		if ShouldFling then
+			local Character = Player.Character
+			local PrimaryPart = Character.PrimaryPart
 
-		PrimaryPart.Velocity = Vector3.new(0,0,0)
-		PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
+			PrimaryPart.Velocity = Vector3.new(0,0,0)
+			PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
+		end
+		IsDiving = false
 	end
-	IsDiving = false
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -83,6 +83,7 @@ local function HandleJumpButton(_,InputState)
 				Player.Character.HumanoidRootPart.SingleJump:Play()
 			elseif not HasDoubleJumped then
 				HasDoubleJumped = true
+				AvatarController:GetAbility("Dive"):StopDive(false)
 				DoubleJump:DoJump()
 				DoubleJump_Anim:Play(0.1,1,0.8)
 				Player.Character.HumanoidRootPart.DoubleJump:Play()
