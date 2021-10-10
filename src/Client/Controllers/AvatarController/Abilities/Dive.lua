@@ -28,6 +28,22 @@ local IsDiving = false
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Helper functions
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+local function GetCharacterMass(Character)
+	local Mass = 0
+	for _, Obj in pairs(Character:GetChildren()) do
+		if Obj:IsA("BasePart") and not Obj.Massless then
+			Mass += Obj.Mass
+		elseif Obj:IsA("Accoutrement") then
+			local Handle = Obj:FindFirstChildWhichIsA("BasePart")
+			if Handle and not Handle.Massless then
+				Mass += Handle.Mass
+			end
+		end
+	end
+
+	return Mass
+end
+
 local function HandleDiveButton(_,InputState)
 	if InputState == Enum.UserInputState.Begin then
 		if AvatarController:GetAvatarHealth() > 0 then
@@ -68,7 +84,7 @@ function Dive:DoDive()
 		CastParams.FilterType = Enum.RaycastFilterType.Blacklist
 
 		SetCharacterCollidable(Player.Character,true)
-		PrimaryPart:ApplyImpulse(Vector3.new(0,600,0) + PrimaryPart.CFrame.LookVector * 1300)
+		PrimaryPart:ApplyImpulse(Vector3.new(0,40 * GetCharacterMass(Character),0) + PrimaryPart.CFrame.LookVector * 100 * GetCharacterMass(Character))
 
 		Stepped_Connection = RunService.Stepped:connect(function()
 			local ForwardRaycastResult = Workspace:Raycast(
@@ -104,7 +120,7 @@ function Dive:StopDive(ShouldFling,CastResult)
 		local PrimaryPart = Character.PrimaryPart
 
 		PrimaryPart.Velocity = Vector3.new(0,0,0)
-		PrimaryPart:ApplyImpulse(-CastResult.Normal * 3000)
+		PrimaryPart:ApplyImpulse(-CastResult.Normal * 500 * GetCharacterMass(Character))
 	end
 	IsDiving = false
 end
