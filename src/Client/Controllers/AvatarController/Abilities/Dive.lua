@@ -40,6 +40,14 @@ local function HandleDiveButton(_,InputState)
 	end
 end
 
+local function SetCharacterCollidable(Character,Collidable)
+	for _,Object in pairs(Character:GetChildren()) do
+		if Object:IsA("BasePart") then
+			Object.CanCollide = Collidable
+		end
+	end
+end
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- API Methods
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -59,7 +67,8 @@ function Dive:DoDive()
 		CastParams.FilterDescendantsInstances = {Player.Character}
 		CastParams.FilterType = Enum.RaycastFilterType.Blacklist
 
-		PrimaryPart.Velocity = PrimaryPart.Velocity + Vector3.new(0,20,0) + (PrimaryPart.CFrame.LookVector * 120)
+		SetCharacterCollidable(Player.Character,true)
+		PrimaryPart:ApplyImpulse(Vector3.new(0,600,0) + PrimaryPart.CFrame.LookVector * 1300)
 
 		Stepped_Connection = RunService.Stepped:connect(function()
 			local ForwardRaycastResult = Workspace:Raycast(
@@ -93,7 +102,9 @@ function Dive:StopDive(ShouldFling,CastResult)
 	if ShouldFling then
 		local Character = Player.Character
 		local PrimaryPart = Character.PrimaryPart
-		PrimaryPart.Velocity = PrimaryPart.Velocity + (-CastResult.Normal * 300)
+
+		PrimaryPart.Velocity = Vector3.new(0,0,0)
+		PrimaryPart:ApplyImpulse(-CastResult.Normal * 3000)
 	end
 	IsDiving = false
 end

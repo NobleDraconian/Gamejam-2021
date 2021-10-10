@@ -39,6 +39,7 @@ local function DisableProblematicHumanoidStates(Character)
 	Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
 	Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
 	Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+	Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
 end
 
 local function HandleHumanoidHealth(Character)
