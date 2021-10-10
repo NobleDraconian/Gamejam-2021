@@ -21,14 +21,28 @@ local AvatarController;
 -------------
 local Player = Players.LocalPlayer
 local HumanoidState_Connection;
+local DoubleJump_Anim_StateConnection;
+local DoubleJump_Anim_Data = Instance.new('Animation')
+DoubleJump_Anim_Data.AnimationId = "rbxassetid://5732750031"
+local DoubleJump_Anim;
 local HasSingleJumped = false
 local HasDoubleJumped = false
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Helper functions
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+local function SetCharacterCollidable(Character,Collidable)
+	for _,Object in pairs(Character:GetChildren()) do
+		if Object:IsA("BasePart") then
+			Object.CanCollide = Collidable
+		end
+	end
+end
+
 local function HandleCharacterAdded(Character)
 	local Humanoid = Character:WaitForChild("Humanoid")
+
+	DoubleJump_Anim = Humanoid:LoadAnimation(DoubleJump_Anim_Data)
 
 	if HumanoidState_Connection ~= nil then
 		HumanoidState_Connection:Disconnect()
@@ -41,6 +55,14 @@ local function HandleCharacterAdded(Character)
 			HasSingleJumped = true
 		end
 	end)
+
+	if DoubleJump_Anim_StateConnection ~= nil then
+		DoubleJump_Anim_StateConnection:Disconnect()
+	end
+	DoubleJump_Anim_StateConnection = DoubleJump_Anim:GetPropertyChangedSignal("IsPlaying"):connect(function()
+		wait() --! Hack, we need to toggle collisions 1 frame after humanoid recalculates collisions due to state change
+		SetCharacterCollidable(Character,not DoubleJump_Anim.IsPlaying)
+	end)
 end
 
 local function HandleJumpButton(_,InputState)
@@ -52,6 +74,7 @@ local function HandleJumpButton(_,InputState)
 			elseif not HasDoubleJumped then
 				HasDoubleJumped = true
 				DoubleJump:DoJump()
+				DoubleJump_Anim:Play()
 			end
 		end
 	end
