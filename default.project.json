@@ -129,7 +129,8 @@
 			"Assets" : {
 				"$className" : "Folder",
 
-				"UIs" : {"$path" : "Assets/UIs"}
+				"UIs" : {"$path" : "Assets/UIs"},
+				"Lighting" : {"$path" : "Assets/Lighting"}
 			},
 			"Network" : {
 				"$className" : "Folder"
